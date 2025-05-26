@@ -18,8 +18,8 @@ void UExternalCameraWindowManager::CreateExternalWindow(UTextureRenderTarget2D* 
 
 	CurrentRenderTarget = RenderTarget;
 
-	const FVector2D WindowSize(1920, 1080);
 	const FName ResourceName("ExternalWindow");
+	const FVector2D WindowSize(1920, 1080);
 	
 	ImageBrush = MakeShareable(new FSlateDynamicImageBrush(ResourceName, WindowSize));
 

@@ -10,12 +10,12 @@ public class MultiWindowCpp : ModuleRules
 	
 		PublicDependencyModuleNames.AddRange(new string[]
 		{
-			"Core", "CoreUObject", "Engine", "InputCore",
-			"Slate",
+			"Core", "CoreUObject", "Engine", "InputCore"
+			,"Slate",
 			"SlateCore",
-			"UMG",           // 必要に応じて（ユーザーUI使うなら）
-			"RenderCore",    // RenderTarget 使用時
-			"RHI"            // Render Hardware Interface（高度な描画用）
+			// "UMG",           // 必要に応じて（ユーザーUI使うなら）
+			// "RenderCore",    // RenderTarget 使用時
+			// "RHI"            // Render Hardware Interface（高度な描画用）
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
