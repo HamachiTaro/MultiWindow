@@ -9,18 +9,17 @@
 #include "Framework/Application/SlateApplication.h"
 #include "Engine/Texture2D.h"
 
-void UExternalCameraWindowManager::CreateExternalWindow(UTextureRenderTarget2D* RenderTarget)
+void UExternalCameraWindowManager::CreateExternalWindow(UTextureRenderTarget2D* RenderTarget, const FVector2D WindowSize)
 {
 	if (RenderTarget == nullptr)
 	{
+		UE_LOG(LogTemp, Warning, TEXT("RenderTarget is null"));
 		return;
 	}
 
 	CurrentRenderTarget = RenderTarget;
 
-	const FName ResourceName("ExternalWindow");
-	const FVector2D WindowSize(1920, 1080);
-	
+	FName ResourceName(*FString::Printf(TEXT("ExternalWindow_%p"), this));
 	ImageBrush = MakeShareable(new FSlateDynamicImageBrush(ResourceName, WindowSize));
 
 	ImageWidget = SNew(SImage).Image(ImageBrush.Get());
@@ -41,7 +40,8 @@ void UExternalCameraWindowManager::CreateExternalWindow(UTextureRenderTarget2D* 
 		FTickerDelegate::CreateUObject(this, &UExternalCameraWindowManager::Tick),
 		0.016f // 60fps
 	);
-	
+
+	// ExternalWindow->SetSizingRule(ESizingRule::FixedSize);
 }
 
 void UExternalCameraWindowManager::CloseExternalWindow()
@@ -71,3 +71,4 @@ bool UExternalCameraWindowManager::Tick(float DeltaTime)
 	}
 	return true;
 }
+

@@ -17,7 +17,7 @@ class MULTIWINDOWCPP_API UExternalCameraWindowManager : public UObject
 public:
 	/** Render Targetを別ウィンドウに表示 **/
 	UFUNCTION(BlueprintCallable, Category = "External Window")
-	void CreateExternalWindow(UTextureRenderTarget2D* RenderTarget);
+	void CreateExternalWindow(UTextureRenderTarget2D* RenderTarget, FVector2D WindowSize = FVector2D(1920, 1080));
 
 	UFUNCTION(BlueprintCallable, Category = "External Window")
 	void CloseExternalWindow();
@@ -40,4 +40,6 @@ private:
 	FTSTicker::FDelegateHandle TickHandle;
 
 	bool Tick(float DeltaTime);
+
+	
 };

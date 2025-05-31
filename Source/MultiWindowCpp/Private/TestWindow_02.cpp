@@ -5,6 +5,12 @@
 
 void UTestWindow_02::CreateWindow(UTexture2D* Texture)
 {
+	if (Texture == nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Texture is null"));
+		return;
+	}
+	
 	const FVector2D WindowSize(Texture->GetSizeX(), Texture->GetSizeY());
 
 	// ウィンドウを作成
@@ -14,8 +20,8 @@ void UTestWindow_02::CreateWindow(UTexture2D* Texture)
 
 	// ImageBrushを作成。これは画像データを保持する
 	const FName ResourceName("Tex");
-	//ImageBrush = MakeShareable(new FSlateImageBrush(ResourceName, WindowSize));
-	ImageBrush = MakeShareable(new FSlateImageBrush());
+	ImageBrush = MakeShareable(new FSlateImageBrush(ResourceName, WindowSize));
+	// ImageBrush = MakeShareable(new FSlateImageBrush());
 	ImageBrush->SetResourceObject(Texture);
 	
 	// Imageウィジェット(UIパーツ)を作成
